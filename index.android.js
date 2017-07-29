@@ -17,10 +17,10 @@ export default class Juno extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to Juno!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.android.js
+          App is under construction.
         </Text>
         <Text style={styles.instructions}>
           Double tap R on your keyboard to reload,{'\n'}
