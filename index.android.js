@@ -9,27 +9,52 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
 } from 'react-native';
 
-export default class Juno extends Component {
+import {
+  StackNavigator,
+} from 'react-navigation';
+
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Welcome',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Juno!
-        </Text>
-        <Text style={styles.instructions}>
-          App is under construction.
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View>
+        <Text>Hello, Chat App!</Text>
+        <Button
+          onPress={() => navigate('Chat', { user: 'Drew'})}
+          title="Chat with Lucy"
+          />
+       </View>
+    );    
+  }
+}
+
+class ChatScreen extends React.Component {
+  // Nav options can be defined as a function of the screen's props:
+  static navigationOptions = ({ navigation }) => ({
+    title: `Chat with ${navigation.state.params.user}`,
+  });
+  render() {
+    // The screen's current route is passed in to `props.navigation.state`:
+    const { params } = this.props.navigation.state;
+    return (
+      <View>
+        <Text>Chat with {params.user}</Text>
       </View>
     );
   }
 }
+
+const Juno = StackNavigator({
+  Home: { screen: HomeScreen },
+  Chat: { screen: ChatScreen },
+});
 
 const styles = StyleSheet.create({
   container: {
